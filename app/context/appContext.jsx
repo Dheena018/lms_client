@@ -10,6 +10,7 @@ export const AppContextProvider = (props) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY;
   const [allCourses, setAllCourses] = useState([]);
   const [isInstructor, setIsInstructor] = useState(true);
+  const [enrolledCourse, setEnrolledCourse] = useState([]);
 
   const router = useRouter();
 
@@ -28,6 +29,7 @@ export const AppContextProvider = (props) => {
     });
     return totalString / course.courseRatings.length;
   }
+
   // Function To Course Chapter Time
 
   const courseChapterTime = (chapter) => {
@@ -57,8 +59,15 @@ export const AppContextProvider = (props) => {
     });
     return TotalLectures;
   };
+
+  // Fetch Enrolled Courses
+
+  const fetchEnrolledCourses = async () => {
+    setEnrolledCourse(dummyCourses);
+  };
   useEffect(() => {
     fetchAllCourses();
+    fetchEnrolledCourses();
   }, []);
   const value = {
     currency,
@@ -70,6 +79,8 @@ export const AppContextProvider = (props) => {
     courseChapterTime,
     courseDurationTime,
     CalculateNoOfLectures,
+    enrolledCourse,
+    fetchEnrolledCourses,
   };
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

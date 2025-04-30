@@ -1,12 +1,16 @@
+import Navbar from "../components/instructors/navbar";
+import Sidebar from "../components/instructors/sideBar";
+
 export default function InstructorLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <h2>Instructor Layout (optional header/sidebar)</h2>
+    <>
+      <Navbar />
       <main>{children}</main>
-    </div>
+      <Sidebar />
+    </>
   );
 }

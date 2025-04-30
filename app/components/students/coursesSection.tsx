@@ -3,6 +3,17 @@ import { AppContext } from "@/app/context/appContext";
 import Link from "next/link";
 import React, { useContext } from "react";
 import CourseCard from "./courseCard";
+interface Course {
+  _id: string;
+  courseTitle: string;
+  courseThumbnail: string;
+  educator: {
+    name: string;
+  };
+  courseRatings: number[];
+  coursePrice: number;
+  discount: number;
+}
 
 const CoursesSection = () => {
   const { allCourses } = useContext(AppContext);
@@ -19,7 +30,7 @@ const CoursesSection = () => {
         results.
       </p>
       <div className="grid grid-cols-4 px-4 md:px-0 md:my-16 my-10 gap-4">
-        {allCourses.slice(0, 4).map((course: any, index: number) => (
+        {allCourses.slice(0, 4).map((course: Course, index: number) => (
           <CourseCard key={index} course={course} />
         ))}
       </div>

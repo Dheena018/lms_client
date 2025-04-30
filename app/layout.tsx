@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
-import Navbar from "./components/students/navbar";
+import { ClerkProvider } from "@clerk/nextjs";
 import { AppContextProvider } from "./context/appContext";
+import LayoutWrapper from "./layoutWrapper";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -24,30 +17,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-      afterSignOutUrl={"/"}
+      afterSignOutUrl="/"
     >
       <html lang="en">
         <body className={`${outfit.variable} antialiased`}>
           <AppContextProvider>
-            {" "}
-            <header className="hidden justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
-                <SignInButton />
-                <SignUpButton />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </header>
-            <Navbar />
-            {children}
-          </AppContextProvider>{" "}
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </AppContextProvider>
         </body>
       </html>
     </ClerkProvider>

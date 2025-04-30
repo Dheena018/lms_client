@@ -4,7 +4,19 @@ import React, { useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import Link from "next/link";
 
-const CourseCard = ({ course }: { course: any }) => {
+interface Course {
+  _id: string;
+  courseTitle: string;
+  courseThumbnail: string;
+  educator: {
+    name: string;
+  };
+  courseRatings: number[];
+  coursePrice: number;
+  discount: number;
+}
+
+const CourseCard = ({ course }: { course: Course }) => {
   const { currency, caluCulateString } = useContext(AppContext);
   console.log(currency);
 

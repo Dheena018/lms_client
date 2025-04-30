@@ -12,7 +12,7 @@ const Navbar = () => {
   const isCourseListPage = pathname.includes("/courselist");
   const { openSignIn } = useClerk();
   const { user } = useUser();
-  const { router, isInstructor, setIsInstructor } = useContext(AppContext);
+  const { router, isInstructor } = useContext(AppContext);
   return (
     <div
       className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b py-4 ${

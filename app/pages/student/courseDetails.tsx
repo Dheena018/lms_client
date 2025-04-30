@@ -1,13 +1,14 @@
 "use client";
+import React, { useContext, useEffect, useState } from "react";
 import Loading from "@/app/components/students/Loading";
 import { AppContext } from "@/app/context/appContext";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import humanizeDuration from "humanize-duration";
-import React, { useContext, useEffect, useState } from "react";
+// import humanizeDuration from "humanize-duration";
 import Footer from "@/app/components/students/footer";
 import YouTube from "react-youtube";
+const humanizeDuration = require("humanize-duration");
 
 interface courseDatas {
   courseTitle: any;
@@ -18,6 +19,9 @@ interface courseDatas {
   coursePrice: any;
   courseThumbnail: any;
   courseContent: any;
+}
+interface playerDatas {
+  videoId: any;
 }
 
 const CourseDetails = () => {
@@ -31,8 +35,8 @@ const CourseDetails = () => {
     courseDurationTime,
   } = useContext(AppContext);
   const [courseData, setCourseData] = useState<courseDatas | null>(null);
-  const [playerData, setPlayerData] = useState<courseDatas | null>(null);
-  const [openSection, setOpenSection] = useState({});
+  const [playerData, setPlayerData] = useState<playerDatas | null>(null);
+  const [openSection, setOpenSection] = useState<any>({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
 
   const fetchCourseData = async () => {
@@ -41,7 +45,7 @@ const CourseDetails = () => {
   };
 
   const toggleIcons = (index: any) => {
-    setOpenSection((prev) => ({ ...prev, [index]: !prev[index] }));
+    setOpenSection((prev: any) => ({ ...prev, [index]: !prev[index] }));
   };
 
   useEffect(() => {
@@ -248,7 +252,7 @@ const CourseDetails = () => {
             </button>
             <div className="pt-6">
               <p className="md:text-xl text-lg font-medium text-gray-800">
-                What's in the course?
+                What&apos;s in the course?
               </p>
               <ul className="ml-4 pt-2 text-sm md:text-[15px] list-disc text-gray-500">
                 <li>LifeTime access with free updates</li>

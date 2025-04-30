@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.18.0",
     "humanize-duration": "^3.32.1",
     "next": "15.3.1",
+    "rc-progress": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-youtube": "^10.1.0"
